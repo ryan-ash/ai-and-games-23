@@ -17,13 +17,15 @@
 		{
 			"Name": "Onlooker",
 			"Type": "Runtime",
-			"LoadingPhase": "PreDefault"
+			"LoadingPhase": "PostEngineInit"
 		}
 	],
 	"Plugins": [
 		{
 			"Name": "SunPosition",
-			"Enabled": true
+			"Enabled": true,
+			"Type": "Runtime",
+			"LoadingPhase": "PostEngineInit"
 		}
 	],
 	"IsBetaVersion": false,

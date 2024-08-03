@@ -70,6 +70,14 @@ public:
                && piece_color != other_color;
     }
 
+    bool has_shadow_of_opposite_color(Cell* cell) {
+        PieceColor other_color = cell->get_piece_color();
+        return piece != PieceType::none
+               && piece_color != PieceColor::absent
+               && other_color != PieceColor::absent
+               && piece_color != other_color;
+    }
+
     PieceType get_piece_type() {
         return piece;
     }
@@ -112,6 +120,8 @@ public:
         {Cell::PieceType::queen, 9},
         {Cell::PieceType::king, 100}
     };
+
+    map<int32, Cell*> pawn_shadows = {};
 
     /**
      * @brief Constructor for the Board class.
@@ -636,6 +646,10 @@ private:
      * @param cell The cell object representing the pawn.
      */
     void add_pawn_take_if_valid(map<int32, Cell*>& in_board, list<int32>& l, int32 key, Cell* cell) {
+        // TODO:
+        // check diagonal take here
+        // keep track of shadows after initial jump moves
+        // reset shadows if piece having it moved again
         if (is_valid_position(in_board, key) && in_board[key]->has_piece_of_opposite_color(cell)) {
             l.push_front(key);
         }

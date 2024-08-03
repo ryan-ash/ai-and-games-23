@@ -13,10 +13,18 @@ public class Onlooker : ModuleRules
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
-				"Core",
-				"SettingsEditor"
+				"Core"
 			}
 		);
+
+		if (Target.bBuildEditor) {
+			PublicDependencyModuleNames.AddRange(
+				new string[]
+				{
+					"SettingsEditor"
+				}
+			);
+		}
 
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
