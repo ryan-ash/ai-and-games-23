@@ -11,8 +11,6 @@ AChessGod::AChessGod(const FObjectInitializer& ObjectInitializer)
 void AChessGod::BeginPlay()
 {
     Super::BeginPlay();
-
-    StartGame();
 }
 
 void AChessGod::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -144,6 +142,12 @@ TArray<FIntPoint> AChessGod::CalculateRandomAIMove(bool IsWhiteAI)
 
     list<int32> PieceKeys = ActiveBoard->get_piece_keys(IsWhiteAI ? Cell::PieceColor::white : Cell::PieceColor::black);
     list<int32> PieceKeysWithValidMoves;
+
+    if (PieceKeys.size() == 0)
+    {
+        UE_LOG(LogTemp, Error, TEXT("No pieces found for Random AI"));
+        return Result;
+    }
 
     bool foundValidMove = false;
     while (!foundValidMove) {

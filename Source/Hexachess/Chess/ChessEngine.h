@@ -190,6 +190,9 @@ public:
      * @return A list of valid moves as position keys.
      */
     list<int32> get_valid_moves(map<int32, Cell*>& in_board, int32 key, bool skip_filter = false) {
+        if (!is_valid_position(in_board, key)) {
+            return {};
+        }
         Cell* cell = in_board[key];
         list<int32> l = {};
         switch (cell->get_piece_type()) {
